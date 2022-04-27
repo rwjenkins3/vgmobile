@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, Text } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
 
 import axios from 'axios';
 import Detail from './Screens/Detail';
@@ -17,6 +17,7 @@ export default function App() {
     const getData = async () => {
       const response = await axios.get(baseURL);
       setData(response.data);
+
     };
 
     getData();
@@ -36,10 +37,16 @@ export default function App() {
 
 
   return (
-    <>
+    <SafeAreaView style={styles.container}>
       <Main data={data} />
       <StatusBar style="auto" />
-    </>
+    </SafeAreaView>
   );
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+
+});
